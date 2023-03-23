@@ -8,6 +8,6 @@ import com.cafe.storekeeper.infrastructure.domain.bill.db.persistence.BillEntity
 
 public interface BillRepository extends MongoRepository<BillEntity, String> {
 
-    Optional<BillEntity> findById(String idSimulation);
+    Optional<BillEntity> findById(String id);
 
 }

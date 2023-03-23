@@ -13,7 +13,7 @@ public interface IBillService {
 
     BillDTO findById(String id) throws ModelException;
 
-    BillDTO save(BillDTO billDTO) throws ModelException;
+    BillDTO save(BillDTO dto) throws ModelException;
 
     BillDTO updateStatus(StatusBillRequest request) throws ModelException;
 

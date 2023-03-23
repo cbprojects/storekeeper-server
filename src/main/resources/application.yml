@@ -2,11 +2,12 @@ spring:
   data:
     mongodb:
       auto-index-creation: true
-      host: ${MONGO_HOST}
-      port: ${MONGO_PORT}
-      username: ${USERNAME_MONGO}
-      password: ${PASSWORD_MONGO}
-      database: ${MONGO_DATABASE}
+      uri: ${MONGO_URL}
+      # host: ${MONGO_HOST}
+      # port: ${MONGO_PORT}
+      # username: ${USERNAME_MONGO}
+      # password: ${PASSWORD_MONGO}
+      # database: ${MONGO_DATABASE}
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
