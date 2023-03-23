@@ -31,14 +31,14 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: 4. Build With Maven
-        run: mvn -U clean install --file ~/work/contacts-manager-eap/contacts-manager-eap/pom.xml
+        run: mvn -U clean install --file ~/work/storekeeper-server/storekeeper-server/pom.xml
       - name: 5. SonarCloud Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run:
           mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-          -Dsonar.projectKey=cbprojects_contacts-manager-eap
+          -Dsonar.projectKey=cbprojects_storekeeper-server
           -Dsonar.sources=.
           -Dsonar.junit.reportPaths=target/site/jacoco/
           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
@@ -52,15 +52,15 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /opt/tomcat/webapps
-            rm -r CentralContactos.war
+            rm -r Storekeeper.war
             ls
       - name: 7. Test ls WAR
-        run: ls ~/work/contacts-manager-eap/contacts-manager-eap/target
+        run: ls ~/work/storekeeper-server/storekeeper-server/target
       - name: 8. Deploy WAR SSH
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
-          local: ./target/CentralContactos.war
-          remote: /opt/tomcat/webapps/CentralContactos.war
+          local: ./target/Storekeeper.war
+          remote: /opt/tomcat/webapps/Storekeeper.war
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
