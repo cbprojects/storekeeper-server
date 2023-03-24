@@ -2,7 +2,7 @@ spring:
   data:
     mongodb:
       auto-index-creation: true
-      uri: ${MONGO_URL}
+      uri: ${STOREKEEPER_MONGO_URL}
       # host: ${MONGO_HOST}
       # port: ${MONGO_PORT}
       # username: ${USERNAME_MONGO}

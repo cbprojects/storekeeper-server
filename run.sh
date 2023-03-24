@@ -6,7 +6,7 @@
 # export PASSWORD_MONGO=dev03
 # export USERNAME_MONGO=dev03
 # export MONGO_DATABASE=gres-loan-orders-uat
-export MONGO_URL=mongodb+srv://storekeeper:OwGkje4clo7TJW18@cluster0.ygkvf6k.mongodb.net/storekeeper-qa?retryWrites=true&w=majority
+export STOREKEEPER_MONGO_URL=mongodb+srv://storekeeper:OwGkje4clo7TJW18@cluster0.ygkvf6k.mongodb.net/storekeeper-qa?retryWrites=true&w=majority
 
 # QA
 
@@ -15,4 +15,4 @@ export MONGO_URL=mongodb+srv://storekeeper:OwGkje4clo7TJW18@cluster0.ygkvf6k.mon
 # export PASSWORD_MONGO=qa03
 # export USERNAME_MONGO=qa03
 # export MONGO_DATABASE=gres-loan-orders-uat
-export MONGO_URL=mongodb+srv://storekeeper:OwGkje4clo7TJW18@cluster0.ygkvf6k.mongodb.net/storekeeper-qa?retryWrites=true&w=majority
+# export STOREKEEPER_MONGO_URL=mongodb+srv://storekeeper:OwGkje4clo7TJW18@cluster0.ygkvf6k.mongodb.net/storekeeper-qa?retryWrites=true&w=majority
