@@ -1,14 +1,14 @@
-package com.cafe.storekeeper.infrastructure.domain.product.db.persistence;
+package com.cafe.storekeeper.infrastructure.domain.client.db.persistence;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
-import com.cafe.storekeeper.helper.enumerated.EProductType;
+import com.cafe.storekeeper.helper.enumerated.EDocumentType;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
+import com.cafe.storekeeper.infrastructure.domain.client.db.pojo.ContactPersonPojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,30 +21,21 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Document(collection = ConstantsTableNames.PRODUCTS)
-public class ProductEntity extends AbstractEntity implements Serializable {
+@Document(collection = ConstantsTableNames.CLIENTS)
+public class ClientEntity extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1430828715777440238L;
 
     @Field("name")
     private String name;
 
-    @Field("description")
-    private String description;
+    @Field("info")
+    private ContactPersonPojo info;
 
-    @Field("stock_min")
-    private long stockMin;
+    @Field("document_number")
+    private String documentNumber;
 
-    @Field("stock_max")
-    private long stockMax;
-
-    @Field("type")
-    private EProductType type;
-
-    @Field("sale_price")
-    private BigDecimal sale_price;
-
-    @Field("price")
-    private BigDecimal price;
+    @Field("document_type")
+    private EDocumentType documentType;
 
     @Field("image")
     private String image;

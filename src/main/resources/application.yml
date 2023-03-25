@@ -2,7 +2,8 @@ spring:
   data:
     mongodb:
       auto-index-creation: true
-      uri: ${STOREKEEPER_MONGO_URL}
+      uri: mongodb+srv://storekeeper:OwGkje4clo7TJW18@cluster0.ygkvf6k.mongodb.net/storekeeper-qa?retryWrites=true&w=majority
+      # uri: ${STOREKEEPER_MONGO_URL}
       # host: ${MONGO_HOST}
       # port: ${MONGO_PORT}
       # username: ${USERNAME_MONGO}

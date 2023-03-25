@@ -12,6 +12,5 @@ public class ConstantsTableNames {
     public static final String PRODUCTS_CATEGORIES = "products_categories";
     public static final String HISTORY = "history";
     public static final String SCHEDULE = "schedule";
-    public static final String PROVIDERS = "providers";
     public static final String CLIENTS = "clients";
 }
