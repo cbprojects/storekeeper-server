@@ -77,10 +77,10 @@ public class ProductService implements IProductService {
         return mapper.toDTO(entity);
     }
 
-    private void setAuditValues(ProductEntity productEntity) {
+    private void setAuditValues(ProductEntity entity) {
         LocalDateTime now = LocalDateTime.now();
-        productEntity.setCreateDate(now);
-        productEntity.setUpdateDate(now);
+        entity.setCreateDate(now);
+        entity.setUpdateDate(now);
     }
 
 }

@@ -77,10 +77,10 @@ public class ClientService implements IClientService {
         return mapper.toDTO(entity);
     }
 
-    private void setAuditValues(ClientEntity clientEntity) {
+    private void setAuditValues(ClientEntity entity) {
         LocalDateTime now = LocalDateTime.now();
-        clientEntity.setCreateDate(now);
-        clientEntity.setUpdateDate(now);
+        entity.setCreateDate(now);
+        entity.setUpdateDate(now);
     }
 
 }

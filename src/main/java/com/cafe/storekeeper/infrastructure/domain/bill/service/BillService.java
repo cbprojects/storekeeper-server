@@ -102,10 +102,10 @@ public class BillService implements IBillService {
         return result;
     }
 
-    private void setAuditValues(BillEntity billEntity) {
+    private void setAuditValues(BillEntity entity) {
         LocalDateTime now = LocalDateTime.now();
-        billEntity.setCreateDate(now);
-        billEntity.setUpdateDate(now);
+        entity.setCreateDate(now);
+        entity.setUpdateDate(now);
     }
 
 }

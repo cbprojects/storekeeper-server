@@ -77,10 +77,10 @@ public class CompanyService implements ICompanyService {
         return mapper.toDTO(entity);
     }
 
-    private void setAuditValues(CompanyEntity companyEntity) {
+    private void setAuditValues(CompanyEntity entity) {
         LocalDateTime now = LocalDateTime.now();
-        companyEntity.setCreateDate(now);
-        companyEntity.setUpdateDate(now);
+        entity.setCreateDate(now);
+        entity.setUpdateDate(now);
     }
 
 }
