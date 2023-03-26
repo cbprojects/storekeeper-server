@@ -3,7 +3,6 @@ package com.cafe.storekeeper.infrastructure.domain.bill.rest.model.dto;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,6 +14,7 @@ import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.CompanyPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.ConceptBillPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.PersonPojo;
+import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.TaxPojo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -51,7 +51,7 @@ public class BillDTO extends AbstractDTO {
     private List<ConceptBillPojo> concepts;
 
     @JsonProperty("taxes")
-    private Map<String, BigDecimal> taxes;
+    private List<TaxPojo> taxes;
 
     @JsonProperty("bill_type")
     private EBillType billType;
@@ -80,7 +80,8 @@ public class BillDTO extends AbstractDTO {
         BigDecimal totalTaxes = BigDecimal.valueOf(0);
 
         if (this.taxes != null && !this.taxes.isEmpty()) {
-            totalTaxes = this.taxes.values().stream()
+            totalTaxes = this.taxes.stream()
+                    .map(TaxPojo::getAmount)
                     .filter(Objects::nonNull)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }

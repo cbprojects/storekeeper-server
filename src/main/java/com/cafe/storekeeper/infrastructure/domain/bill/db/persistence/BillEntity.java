@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,6 +18,7 @@ import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.CompanyPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.ConceptBillPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.PersonPojo;
+import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.TaxPojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,7 +54,7 @@ public class BillEntity extends AbstractEntity implements Serializable {
     private List<ConceptBillPojo> concepts;
 
     @Field("taxes")
-    private Map<String, BigDecimal> taxes;
+    private List<TaxPojo> taxes;
 
     @Field("bill_type")
     private EBillType billType;
@@ -83,7 +83,8 @@ public class BillEntity extends AbstractEntity implements Serializable {
         BigDecimal totalTaxes = BigDecimal.valueOf(0);
 
         if (this.taxes != null && !this.taxes.isEmpty()) {
-            totalTaxes = this.taxes.values().stream()
+            totalTaxes = this.taxes.stream()
+                    .map(TaxPojo::getAmount)
                     .filter(Objects::nonNull)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
