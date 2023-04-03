@@ -26,6 +26,7 @@
 		<spring-doc.version>1.6.8</spring-doc.version>
 		<actuator.version>2.7.10</actuator.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+		<commons.io.version>2.11.0</commons.io.version>
 		<org.json.version>20220320</org.json.version>
 		<jasper.version>6.5.1</jasper.version>
 		<sonar.organization>cbprojects</sonar.organization>
@@ -111,6 +112,17 @@
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>${jasper.version}</version>
+		</dependency>
+
+		<!-- COMMONS -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons.io.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
 		</dependency>
 	</dependencies>
 
