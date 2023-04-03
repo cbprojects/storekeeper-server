@@ -3,12 +3,14 @@ package com.cafe.storekeeper.infrastructure.domain.product.db.persistence;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
 import com.cafe.storekeeper.helper.enumerated.EProductType;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +27,11 @@ import lombok.ToString;
 public class ProductEntity extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1430828715777440238L;
 
-    @Field("name")
+    @Field("code")
+    @Indexed(unique = true)
+    private String code;
+
+    @JsonProperty("name")
     private String name;
 
     @Field("description")

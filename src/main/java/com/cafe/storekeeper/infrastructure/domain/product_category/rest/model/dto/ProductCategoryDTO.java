@@ -18,6 +18,9 @@ import lombok.ToString;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductCategoryDTO extends AbstractDTO {
 
+    @JsonProperty("code")
+    private String code;
+
     @JsonProperty("name")
     private String name;
 

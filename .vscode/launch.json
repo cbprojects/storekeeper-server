@@ -43,7 +43,7 @@
             "name": "Application",
             "request": "launch",
             "mainClass": "com.cafe.storekeeper.Application",
-            "projectName": "simulation"
+            "projectName": "storekeeper-server"
         }
     ]
 }

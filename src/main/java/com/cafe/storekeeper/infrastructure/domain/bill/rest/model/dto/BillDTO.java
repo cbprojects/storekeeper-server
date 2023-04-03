@@ -11,10 +11,6 @@ import com.cafe.storekeeper.helper.enumerated.EBillStatus;
 import com.cafe.storekeeper.helper.enumerated.EBillType;
 import com.cafe.storekeeper.helper.enumerated.EPaymentMethod;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
-import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.CompanyPojo;
-import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.ConceptBillPojo;
-import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.PersonPojo;
-import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.TaxPojo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -48,10 +44,10 @@ public class BillDTO extends AbstractDTO {
     private String address;
 
     @JsonProperty("concepts")
-    private List<ConceptBillPojo> concepts;
+    private List<ConceptBillDTO> concepts;
 
     @JsonProperty("taxes")
-    private List<TaxPojo> taxes;
+    private List<TaxDTO> taxes;
 
     @JsonProperty("bill_type")
     private EBillType billType;
@@ -68,20 +64,20 @@ public class BillDTO extends AbstractDTO {
     private LocalDateTime expiryDate;
 
     @JsonProperty("company")
-    private CompanyPojo company;
+    private CompanyBillDTO company;
 
     @JsonProperty("provider")
-    private PersonPojo provider;
+    private PersonDTO provider;
 
     @JsonProperty("client")
-    private PersonPojo client;
+    private PersonDTO client;
 
     public BigDecimal getTotalTaxes() {
         BigDecimal totalTaxes = BigDecimal.valueOf(0);
 
         if (this.taxes != null && !this.taxes.isEmpty()) {
             totalTaxes = this.taxes.stream()
-                    .map(TaxPojo::getAmount)
+                    .map(TaxDTO::getAmount)
                     .filter(Objects::nonNull)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }

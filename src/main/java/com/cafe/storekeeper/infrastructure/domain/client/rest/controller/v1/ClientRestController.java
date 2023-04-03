@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cafe.storekeeper.helper.util.UtilResponse;
 import com.cafe.storekeeper.infrastructure.adapter.IClientService;
+import com.cafe.storekeeper.infrastructure.adapter.model.StandardPaginationRestResponse;
 import com.cafe.storekeeper.infrastructure.domain.client.rest.model.dto.ClientDTO;
 import com.cafe.storekeeper.infrastructure.exception.ModelException;
 import com.cafe.storekeeper.infrastructure.exception.RequestException;
@@ -32,9 +33,13 @@ public class ClientRestController {
     private final IClientService service;
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ClientDTO>> find(HttpServletRequest request) throws ModelException, RequestException {
+    public ResponseEntity<StandardPaginationRestResponse> find(HttpServletRequest request)
+            throws ModelException, RequestException {
         log.info("|==========> (START FIND)");
-        return new ResponseEntity<>(this.service.find(UtilResponse.buildCriteriaParams(request)), HttpStatus.OK);
+        List<ClientDTO> result = this.service.find(UtilResponse.buildCriteriaParams(request));
+        StandardPaginationRestResponse response = UtilResponse.fillResponsePagination(result, result.size(),
+                result.size());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

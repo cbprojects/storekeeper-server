@@ -1,10 +1,9 @@
-package com.cafe.storekeeper.infrastructure.domain.bill.db.pojo;
+package com.cafe.storekeeper.infrastructure.domain.bill.rest.model.dto;
 
 import java.io.Serializable;
 
-import org.springframework.data.mongodb.core.mapping.Field;
-
 import com.cafe.storekeeper.helper.enumerated.EDocumentType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,16 +16,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class CompanyPojo implements Serializable {
+public class CompanyBillDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Field("business_name")
+    @JsonProperty("business_name")
     private String businessName;
 
-    @Field("document_number")
+    @JsonProperty("document_number")
     private String documentNumber;
 
-    @Field("document_type")
+    @JsonProperty("document_type")
     private EDocumentType documentType;
 
 }

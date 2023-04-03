@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,8 +16,8 @@ import com.cafe.storekeeper.helper.enumerated.EBillStatus;
 import com.cafe.storekeeper.helper.enumerated.EBillType;
 import com.cafe.storekeeper.helper.enumerated.EPaymentMethod;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
-import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.CompanyPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.ConceptBillPojo;
+import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.CompanyBillPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.PersonPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.TaxPojo;
 
@@ -36,6 +37,7 @@ public class BillEntity extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1430828715777440238L;
 
     @Field("bill_id")
+    @Indexed(unique = true)
     private long billId;
 
     @Field("status")
@@ -71,7 +73,7 @@ public class BillEntity extends AbstractEntity implements Serializable {
     private LocalDateTime expiryDate;
 
     @Field("company")
-    private CompanyPojo company;
+    private CompanyBillPojo company;
 
     @Field("provider")
     private PersonPojo provider;

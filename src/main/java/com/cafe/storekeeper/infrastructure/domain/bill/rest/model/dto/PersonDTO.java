@@ -1,8 +1,8 @@
-package com.cafe.storekeeper.infrastructure.domain.company.rest.model.dto;
+package com.cafe.storekeeper.infrastructure.domain.bill.rest.model.dto;
+
+import java.io.Serializable;
 
 import com.cafe.storekeeper.helper.enumerated.EDocumentType;
-import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -16,22 +16,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class CompanyDTO extends AbstractDTO {
+public class PersonDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    @JsonProperty("business_name")
-    private String businessName;
-
-    @JsonProperty("info")
-    private ContactCompanyDTO info;
+    @JsonProperty("name")
+    private String name;
 
     @JsonProperty("document_number")
     private String documentNumber;
 
     @JsonProperty("document_type")
     private EDocumentType documentType;
-
-    @JsonProperty("image")
-    private String image;
 
 }
