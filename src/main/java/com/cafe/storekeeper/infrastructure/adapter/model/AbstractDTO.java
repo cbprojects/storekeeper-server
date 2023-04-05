@@ -1,5 +1,6 @@
 package com.cafe.storekeeper.infrastructure.adapter.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,7 +16,8 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AbstractDTO {
+public class AbstractDTO implements Serializable {
+	private static final long serialVersionUID = 1430828715777440238L;
 
 	@JsonProperty("_id")
 	private String id;
