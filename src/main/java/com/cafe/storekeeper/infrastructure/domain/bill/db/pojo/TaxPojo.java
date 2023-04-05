@@ -17,7 +17,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class TaxPojo implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1430828715777440238L;
 
     @Field("description")
     private String description;
