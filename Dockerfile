@@ -18,5 +18,5 @@ FROM adoptopenjdk/openjdk11
 ARG JAR_FILE=target/*.jar
 ENV CONTEXT_PATH=/
 
-COPY --from=build /usr/app/${JAR_FILE} /app/orders.jar
-ENTRYPOINT ["java", "-jar", "/app/orders.jar", "--server.servlet.context-path=${CONTEXT_PATH}"]
+COPY --from=build /usr/app/${JAR_FILE} /app/Storekeeper.jar
+ENTRYPOINT ["java", "-jar", "/app/Storekeeper.jar", "--server.servlet.context-path=${CONTEXT_PATH}"]
