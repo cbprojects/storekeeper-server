@@ -13,7 +13,7 @@
 
 	<groupId>com.cafe.storekeeper</groupId>
 	<artifactId>storekeeper</artifactId>
-	<packaging>war</packaging>
+	<!-- <packaging>war</packaging> -->
 	<name>storekeeper-server</name>
 	<description>Storekeeper API</description>
 	<!-- DESPLIEGUE PROD -->
