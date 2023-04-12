@@ -8,6 +8,13 @@ on:
     tags:
       - "*"
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Storekeeper - Latest image version'
+        required: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,27 +49,60 @@ jobs:
           -Dsonar.sources=.
           -Dsonar.junit.reportPaths=target/site/jacoco/
           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-      - name: 6. Delete prev WAR
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}          
+      - name: 6. Test ls JAR
+        run: ls ~/work/storekeeper-server/storekeeper-server/target
+      - name: 7. Transfer JAR SSH
+        uses: garygrossgarten/github-action-scp@v0.7.3
+        with:
+          local: ./target/Storekeeper.jar
+          remote: /opt/docker/services/storekeeper/Storekeeper.jar
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+      - name: 8. Transfer Dockerfile SSH
+        uses: garygrossgarten/github-action-scp@v0.7.3
+        with:
+          local: ./Dockerfile
+          remote: /opt/docker/services/storekeeper/Dockerfile
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+      - name: 9. Transfer docker-compose file SSH
+        uses: garygrossgarten/github-action-scp@v0.7.3
+        with:
+          local: ./docker-compose.yml
+          remote: /opt/docker/services/storekeeper/docker-compose.yml
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+      - name: 10. Transfer environment file SSH
+        uses: garygrossgarten/github-action-scp@v0.7.3
+        with:
+          local: ./.env
+          remote: /opt/docker/services/storekeeper/.env
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+      - name: 11. Delete prev and Deploy new version with docker-compose
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          password: ${{ secrets.SSH_PASSWORD }} 
           port: ${{ secrets.SSH_PORT }}
           script: |
             export STOREKEEPER_MONGO_URL="${{secrets.STOREKEEPER_MONGO_URL}}"
-            cd /opt/tomcat/webapps
-            rm -r Storekeeper.war
+            cd /opt/docker/services/storekeeper
+            docker rmi storekeeper-server:latest
+            docker-compose -f docker-compose.yml up
             ls
-      - name: 7. Test ls WAR
-        run: ls ~/work/storekeeper-server/storekeeper-server/target
-      - name: 8. Deploy WAR SSH
-        uses: garygrossgarten/github-action-scp@v0.7.3
-        with:
-          local: ./target/Storekeeper.war
-          remote: /opt/tomcat/webapps/Storekeeper.war
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ secrets.SSH_PORT }}
+            rm -r Storekeeper.jar
+            rm -r .env
+            rm -r Dockerfile
+            rm -r docker-compose.yml
+            ls

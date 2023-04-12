@@ -1,13 +1,13 @@
 version: "3.9"
 
 services:
-  storekeeper-be:
-    container_name: storekeeper-be
+  storekeeper-server:
+    container_name: storekeeper-server
     env_file: ./.env
     build:
       context: ./
       dockerfile: ./Dockerfile
-    image: storekeeper-be:latest
+    image: storekeeper-server:latest
     ports:
       - 8080:8080
     networks:
