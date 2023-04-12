@@ -13,11 +13,11 @@
 
 	<groupId>com.cafe.storekeeper</groupId>
 	<artifactId>storekeeper</artifactId>
-	<!-- <packaging>war</packaging> -->
 	<name>storekeeper-server</name>
 	<description>Storekeeper API</description>
 	<!-- DESPLIEGUE PROD -->
-	<version>1.1.1</version>
+	<!-- packaging war packaging -->
+	<version>1.1.2</version>
 
 	<properties>
 		<java.version>11</java.version>
