@@ -4,7 +4,7 @@ RUN mkdir -p $HOME
 WORKDIR $HOME
 
 ARG JAR_FILE=Storekeeper.jar
-ADD target/${JAR_FILE} $HOME/${JAR_FILE}
+ADD ${JAR_FILE} $HOME/${JAR_FILE}
 
 ENV CONTEXT_PATH=/
 
