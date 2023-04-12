@@ -52,16 +52,16 @@ jobs:
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}          
       - name: 6. Test ls JAR
         run: ls ~/work/storekeeper-server/storekeeper-server/target
-      - name: 7. Delete prevs docker image & network
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            docker rmi storekeeper-server:latest
-            docker network rm storekeeper_network
+      # - name: 7. Delete prevs docker image & network
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USERNAME }}
+      #     password: ${{ secrets.SSH_PASSWORD }}
+      #     port: ${{ secrets.SSH_PORT }}
+      #     script: |
+      #       docker rmi storekeeper-server:latest
+      #       docker network rm storekeeper_network
       - name: 8. Delete prev JAR & Dockerfiles
         uses: appleboy/ssh-action@master
         with:
