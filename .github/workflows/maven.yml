@@ -61,6 +61,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             docker rmi storekeeper-server:latest
+            docker network rm storekeeper_network
             cd /opt/docker/services/storekeeper
             ls
             rm -r Storekeeper.jar
