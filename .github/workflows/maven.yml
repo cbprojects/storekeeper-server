@@ -52,7 +52,23 @@ jobs:
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}          
       - name: 6. Test ls JAR
         run: ls ~/work/storekeeper-server/storekeeper-server/target
-      - name: 7. Transfer JAR SSH
+      - name: 7. Delete prev JAR & Dockerfiles
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            docker rmi storekeeper-server:latest
+            cd /opt/docker/services/storekeeper
+            ls
+            rm -r Storekeeper.jar
+            rm -r .env
+            rm -r Dockerfile
+            rm -r docker-compose.yml
+            ls
+      - name: 8. Transfer JAR SSH
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
           local: ./target/Storekeeper.jar
@@ -61,7 +77,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-      - name: 8. Transfer Dockerfile SSH
+      - name: 9. Transfer Dockerfile SSH
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
           local: ./Dockerfile
@@ -70,7 +86,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-      - name: 9. Transfer docker-compose file SSH
+      - name: 10. Transfer docker-compose file SSH
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
           local: ./docker-compose.yml
@@ -79,7 +95,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-      - name: 10. Transfer environment file SSH
+      - name: 11. Transfer environment file SSH
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
           local: ./.env
@@ -88,7 +104,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-      - name: 11. Deploy new version with docker-compose
+      - name: 12. Deploy new version with docker-compose
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -98,20 +114,6 @@ jobs:
           script: |
             export STOREKEEPER_MONGO_URL="${{secrets.STOREKEEPER_MONGO_URL}}"
             cd /opt/docker/services/storekeeper
-            docker rmi storekeeper-server:latest
+            ls
             docker-compose -f docker-compose.yml up
-            ls
-      - name: 12. Delete prev JAR & Dockerfiles
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd /opt/docker/services/storekeeper
-            rm -r Storekeeper.jar
-            rm -r .env
-            rm -r Dockerfile
-            rm -r docker-compose.yml
-            ls
+            docker ps
