@@ -1,7 +1,5 @@
 package com.cafe.storekeeper.infrastructure.domain.client.db.persistence;
 
-import java.io.Serializable;
-
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -9,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
 import com.cafe.storekeeper.helper.enumerated.EDocumentType;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
-import com.cafe.storekeeper.infrastructure.domain.client.db.pojo.ContactPersonPojo;
+import com.cafe.storekeeper.infrastructure.domain.client.db.pojo.ContactClientPersonPojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,14 +21,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.CLIENTS)
-public class ClientEntity extends AbstractEntity implements Serializable {
-    private static final long serialVersionUID = 1430828715777440238L;
+public class ClientEntity extends AbstractEntity {
 
     @Field("name")
     private String name;
 
     @Field("info")
-    private ContactPersonPojo info;
+    private ContactClientPersonPojo info;
 
     @Field("document_number")
     @Indexed(unique = true)

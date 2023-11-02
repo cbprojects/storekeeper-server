@@ -17,7 +17,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AbstractDTO implements Serializable {
-	private static final long serialVersionUID = 1430828715777440238L;
+	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("_id")
 	private String id;

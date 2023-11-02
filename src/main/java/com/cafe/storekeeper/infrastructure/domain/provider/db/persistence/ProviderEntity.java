@@ -1,4 +1,4 @@
-package com.cafe.storekeeper.infrastructure.domain.company.db.persistence;
+package com.cafe.storekeeper.infrastructure.domain.provider.db.persistence;
 
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,7 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
 import com.cafe.storekeeper.helper.enumerated.EDocumentType;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
-import com.cafe.storekeeper.infrastructure.domain.company.db.pojo.ContactCompanyPojo;
+import com.cafe.storekeeper.infrastructure.domain.client.db.pojo.ContactClientPersonPojo;
+import com.cafe.storekeeper.infrastructure.domain.provider.db.pojo.ContactProviderPersonPojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,14 +21,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Document(collection = ConstantsTableNames.COMPANIES)
-public class CompanyEntity extends AbstractEntity {
+@Document(collection = ConstantsTableNames.CLIENTS)
+public class ProviderEntity extends AbstractEntity {
 
-    @Field("business_name")
-    private String businessName;
+    @Field("name")
+    private String name;
 
     @Field("info")
-    private ContactCompanyPojo info;
+    private ContactProviderPersonPojo info;
 
     @Field("document_number")
     @Indexed(unique = true)

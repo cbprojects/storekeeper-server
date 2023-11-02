@@ -1,4 +1,4 @@
-package com.cafe.storekeeper.infrastructure.domain.client.db.pojo;
+package com.cafe.storekeeper.infrastructure.domain.provider.db.pojo;
 
 import java.io.Serializable;
 
@@ -15,8 +15,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class ContactPersonPojo implements Serializable {
-    private static final long serialVersionUID = 1430828715777440238L;
+public class ContactProviderPersonPojo implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Field("telephone")
     private String telephone;

@@ -1,6 +1,5 @@
 package com.cafe.storekeeper.infrastructure.domain.product.db.persistence;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -24,8 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.PRODUCTS)
-public class ProductEntity extends AbstractEntity implements Serializable {
-    private static final long serialVersionUID = 1430828715777440238L;
+public class ProductEntity extends AbstractEntity {
 
     @Field("code")
     @Indexed(unique = true)

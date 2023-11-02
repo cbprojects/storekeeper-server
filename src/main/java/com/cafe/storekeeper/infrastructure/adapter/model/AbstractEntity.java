@@ -1,5 +1,6 @@
 package com.cafe.storekeeper.infrastructure.adapter.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
@@ -15,7 +16,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AbstractEntity {
+public class AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     private String id;

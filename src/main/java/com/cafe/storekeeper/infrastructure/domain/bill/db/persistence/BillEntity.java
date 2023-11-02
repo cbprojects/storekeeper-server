@@ -1,6 +1,5 @@
 package com.cafe.storekeeper.infrastructure.domain.bill.db.persistence;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,8 +15,8 @@ import com.cafe.storekeeper.helper.enumerated.EBillStatus;
 import com.cafe.storekeeper.helper.enumerated.EBillType;
 import com.cafe.storekeeper.helper.enumerated.EPaymentMethod;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
-import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.ConceptBillPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.CompanyBillPojo;
+import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.ConceptBillPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.PersonPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.TaxPojo;
 
@@ -33,8 +32,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.BILLS)
-public class BillEntity extends AbstractEntity implements Serializable {
-    private static final long serialVersionUID = 1430828715777440238L;
+public class BillEntity extends AbstractEntity {
 
     @Field("bill_id")
     @Indexed(unique = true)

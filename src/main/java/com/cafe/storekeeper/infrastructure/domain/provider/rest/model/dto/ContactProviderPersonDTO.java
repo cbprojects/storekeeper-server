@@ -1,8 +1,8 @@
-package com.cafe.storekeeper.infrastructure.domain.company.db.pojo;
+package com.cafe.storekeeper.infrastructure.domain.provider.rest.model.dto;
 
 import java.io.Serializable;
 
-import org.springframework.data.mongodb.core.mapping.Field;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,19 +15,19 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class ContactCompanyPojo implements Serializable {
+public class ContactProviderPersonDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Field("telephone")
+    @JsonProperty("telephone")
     private String telephone;
 
-    @Field("email")
+    @JsonProperty("email")
     private String email;
 
-    @Field("address")
+    @JsonProperty("address")
     private String address;
 
-    @Field("city")
+    @JsonProperty("city")
     private String city;
 
 }

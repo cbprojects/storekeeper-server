@@ -27,6 +27,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BillDTO extends AbstractDTO {
+    private static final long serialVersionUID = 1L;
 
     @JsonProperty("bill_id")
     private long billId;

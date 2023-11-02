@@ -23,7 +23,7 @@ public class ClientDTO extends AbstractDTO {
     private String name;
 
     @JsonProperty("info")
-    private ContactPersonDTO info;
+    private ContactClientPersonDTO info;
 
     @JsonProperty("document_number")
     private String documentNumber;

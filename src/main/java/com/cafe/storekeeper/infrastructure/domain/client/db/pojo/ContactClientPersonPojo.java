@@ -1,10 +1,8 @@
-package com.cafe.storekeeper.infrastructure.domain.bill.db.pojo;
+package com.cafe.storekeeper.infrastructure.domain.client.db.pojo;
 
 import java.io.Serializable;
 
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import com.cafe.storekeeper.helper.enumerated.EDocumentType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,16 +15,19 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class PersonPojo implements Serializable {
+public class ContactClientPersonPojo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Field("name")
-    private String name;
+    @Field("telephone")
+    private String telephone;
 
-    @Field("document_number")
-    private String documentNumber;
+    @Field("email")
+    private String email;
 
-    @Field("document_type")
-    private EDocumentType documentType;
+    @Field("address")
+    private String address;
+
+    @Field("city")
+    private String city;
 
 }

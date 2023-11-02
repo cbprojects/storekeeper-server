@@ -20,28 +20,28 @@ Para ejecutar el proyecto de forma local, el proyecto cuenta con la posibilidad 
 - Como requisito previo se requiere la instalación y ejecución de [docker](https://docs.docker.com/install/).
 - Deben agregarse variables de entorno para el correcto funcionamiento del MS. Se sugiere a través de un archivo (.env) que por seguridad no es subido en el repositorio.
 - Clonar el proyecto y desde la raiz abrir una terminal (CMD) donde se deberán ejecutar los comandos brindados a continuación.
-- Debe exisitr una 'network' de Docker creada a la cual pertenecerán todos los contenedores. (Para este ejemplo se tomará la network: 'cb-net'):
+- Debe exisitr una 'network' de Docker creada a la cual pertenecerán todos los contenedores. (Para este ejemplo se tomará la network: 'storekeeper-net'):
 
   ### **CREAR NETWORK DOCKER (OPCIONAL)**
   
-  - Correr el siguiente comando para crear la network 'cb-net' (solo si no existe la network creada):
+  - Correr el siguiente comando para crear la network 'storekeeper-net' (solo si no existe la network creada):
 
     ```shell
-        $ docker network create --driver bridge cb-net
+        $ docker network create --driver bridge storekeeper-net
     ```
 
   - En caso de ser necesario, se puede borrar una network corriendo el siguiente comando:
 
     ```shell
-        $ docker network rm cb-net
+        $ docker network rm storekeeper-net
     ```
 
 - Build contenedor Docker:
 
     ```bash
         $ mvn -U clean install
-        $ docker build -t agtech/storekeeper-server .
-        $ docker run --env-file .env -dp 8080:8080 --name storekeeper-server --network cb-net agtech/storekeeper-server
+        $ docker build -t cbprojects/storekeeper-server .
+        $ docker run --env-file .env -dp 8085:8085 --name storekeeper-server --network storekeeper-net cbprojects/storekeeper-server
     ```
 
 - Para verificar los contenedores iniciados correr el siguiente comando y deberá ver algo como:
@@ -50,17 +50,17 @@ Para ejecutar el proyecto de forma local, el proyecto cuenta con la posibilidad 
         $ docker ps
 
         CONTAINER ID   IMAGE                            COMMAND                           CREATED          STATUS          PORTS                    NAMES
-        55d0631305bb   agtech/storekeeper-server       "java -jar /contact-manager.j…"   50 minutes ago   Up 50 minutes   0.0.0.0:8080->8080/tcp   storekeeper-server
+        55d0631305bb   cbprojects/storekeeper-server       "java -jar /contact-manager.j…"   50 minutes ago   Up 50 minutes   0.0.0.0:8080->8080/tcp   storekeeper-server
     ```
 
 - Para inspeccionar las propiedades de la network correr el siguiente comando y deberá ver algo como:
 
     ```bash
-        $ docker network inspect cb-net
+        $ docker network inspect storekeeper-net
         
         [
             {
-                "Name": "cb-net",
+                "Name": "storekeeper-net",
                 "Id": "4426de77cc4449cd3ae60eeb9f815f3ff12b7c2657f385086cb45e1bfb0db4dc",
                 "Created": "2022-05-30T03:30:02.963358677Z",
                 "Scope": "local",
@@ -107,7 +107,7 @@ Al momento de agregar las variables de entorno, tenga en cuenta que la visibilid
 
     ```bash
         CONTAINER_ID   IMAGE                   INTERNAL_NETWORK_IP:PORT     NAMES
-        55d0631305bb   agtech/storekeeper-server       '172.19.0.2':8080              storekeeper-server
+        55d0631305bb   cbprojects/storekeeper-server       '172.19.0.2':8080              storekeeper-server
     ```
 
 Esto permite el despliegue de la aplicación en un contenedor docker que puede ser usado en conjunto con otros contenedores, como por ejemplo una base de datos. Esto falicitará realizar tests de integracion entre frentes de trabajo y sistemas.

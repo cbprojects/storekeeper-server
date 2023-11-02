@@ -1,7 +1,5 @@
 package com.cafe.storekeeper.infrastructure.domain.product_category.db.persistence;
 
-import java.io.Serializable;
-
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -21,8 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.PRODUCTS_CATEGORIES)
-public class ProductCategoryEntity extends AbstractEntity implements Serializable {
-    private static final long serialVersionUID = 1430828715777440238L;
+public class ProductCategoryEntity extends AbstractEntity {
 
     @Field("code")
     @Indexed(unique = true)

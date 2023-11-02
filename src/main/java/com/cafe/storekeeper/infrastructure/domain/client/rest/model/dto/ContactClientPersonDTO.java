@@ -15,8 +15,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class ContactPersonDTO implements Serializable {
-    private static final long serialVersionUID = 1430828715777440238L;
+public class ContactClientPersonDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @JsonProperty("telephone")
     private String telephone;

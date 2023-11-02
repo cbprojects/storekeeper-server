@@ -124,5 +124,5 @@ jobs:
             export STOREKEEPER_MONGO_URL="${{secrets.STOREKEEPER_MONGO_URL}}"
             cd /opt/docker/services/storekeeper
             ls
-            docker-compose -f docker-compose.yml up
+            docker-compose up -d --build
             docker ps

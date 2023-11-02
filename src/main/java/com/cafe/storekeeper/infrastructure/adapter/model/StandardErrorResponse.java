@@ -1,5 +1,7 @@
 package com.cafe.storekeeper.infrastructure.adapter.model;
 
+import java.io.Serializable;
+
 import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +15,8 @@ import lombok.Setter;
 @RequiredArgsConstructor
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class StandardErrorResponse {
+public class StandardErrorResponse implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @JsonProperty("code")
     private String code;

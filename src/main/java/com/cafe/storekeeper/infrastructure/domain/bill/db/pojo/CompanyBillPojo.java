@@ -18,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class CompanyBillPojo implements Serializable {
-    private static final long serialVersionUID = 1430828715777440238L;
+    private static final long serialVersionUID = 1L;
 
     @Field("business_name")
     private String businessName;
