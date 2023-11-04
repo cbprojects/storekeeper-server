@@ -14,4 +14,6 @@ public interface IClientService {
 
     ClientDTO save(ClientDTO dto) throws ModelException;
 
+    boolean delete(String id) throws ModelException;
+
 }

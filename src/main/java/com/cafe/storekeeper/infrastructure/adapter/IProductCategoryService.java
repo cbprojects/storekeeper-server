@@ -14,4 +14,6 @@ public interface IProductCategoryService {
 
     ProductCategoryDTO save(ProductCategoryDTO dto) throws ModelException;
 
+    boolean delete(String id) throws ModelException;
+
 }

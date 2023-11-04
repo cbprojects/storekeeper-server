@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.IProductService;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 import com.cafe.storekeeper.infrastructure.domain.product.db.persistence.ProductEntity;
@@ -65,16 +66,38 @@ public class ProductService implements IProductService {
             throw new ModelException(codeError);
         }
 
-        // Mapper to entity
-        ProductEntity entity = mapper.toEntity(dto);
+        try {
+            // Mapper to entity
+            ProductEntity entity = mapper.toEntity(dto);
 
-        // Set audit values
-        this.setAuditValues(entity);
+            // Set audit values
+            this.setAuditValues(entity);
 
-        // Save entity
-        entity = this.repository.save(entity);
+            // Save entity
+            entity = this.repository.save(entity);
 
-        return mapper.toDTO(entity);
+            return mapper.toDTO(entity);
+        } catch (Exception excepcion) {
+            throw new ModelException(excepcion.getMessage());
+        }
+    }
+
+    @Override
+    public boolean delete(String id) throws ModelException {
+        boolean result = false;
+        try {
+            Optional<ProductEntity> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                repository.delete(optional.get());
+                result = true;
+            } else {
+                throw new ModelException(new StandardErrorResponse(EMapApiErrors.ERROR_DATA_NOT_FOUND));
+            }
+        } catch (Exception excepcion) {
+            throw new ModelException(excepcion.getMessage());
+        }
+
+        return result;
     }
 
     private void setAuditValues(ProductEntity entity) {

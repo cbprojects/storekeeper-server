@@ -14,4 +14,6 @@ public interface ICompanyService {
 
     CompanyDTO save(CompanyDTO dto) throws ModelException;
 
+    boolean delete(String id) throws ModelException;
+
 }

@@ -7,6 +7,7 @@ public class ConstantsTableNames {
 
     public static final String PARAMETERS = "parameters";
     public static final String COMPANIES = "companies";
+    public static final String PROVIDERS = "providers";
     public static final String BILLS = "bills";
     public static final String PRODUCTS = "products";
     public static final String PRODUCTS_CATEGORIES = "products_categories";

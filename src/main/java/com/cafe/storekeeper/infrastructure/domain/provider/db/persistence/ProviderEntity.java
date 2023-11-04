@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
 import com.cafe.storekeeper.helper.enumerated.EDocumentType;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
-import com.cafe.storekeeper.infrastructure.domain.client.db.pojo.ContactClientPersonPojo;
 import com.cafe.storekeeper.infrastructure.domain.provider.db.pojo.ContactProviderPersonPojo;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +20,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Document(collection = ConstantsTableNames.CLIENTS)
+@Document(collection = ConstantsTableNames.PROVIDERS)
 public class ProviderEntity extends AbstractEntity {
 
     @Field("name")

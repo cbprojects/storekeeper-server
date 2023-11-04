@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.IBillService;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.persistence.BillEntity;
@@ -66,16 +67,38 @@ public class BillService implements IBillService {
             throw new ModelException(codeError);
         }
 
-        // Mapper to entity
-        BillEntity entity = mapper.toEntity(dto);
+        try {
+            // Mapper to entity
+            BillEntity entity = mapper.toEntity(dto);
 
-        // Set audit values
-        this.setAuditValues(entity);
+            // Set audit values
+            this.setAuditValues(entity);
 
-        // Save entity
-        entity = this.repository.save(entity);
+            // Save entity
+            entity = this.repository.save(entity);
 
-        return mapper.toDTO(entity);
+            return mapper.toDTO(entity);
+        } catch (Exception excepcion) {
+            throw new ModelException(excepcion.getMessage());
+        }
+    }
+
+    @Override
+    public boolean delete(String id) throws ModelException {
+        boolean result = false;
+        try {
+            Optional<BillEntity> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                repository.delete(optional.get());
+                result = true;
+            } else {
+                throw new ModelException(new StandardErrorResponse(EMapApiErrors.ERROR_DATA_NOT_FOUND));
+            }
+        } catch (Exception excepcion) {
+            throw new ModelException(excepcion.getMessage());
+        }
+
+        return result;
     }
 
     @Override
@@ -88,18 +111,22 @@ public class BillService implements IBillService {
             throw new ModelException(codeError);
         }
 
-        // Find entity
-        Optional<BillEntity> optional = repository.findById(request.getId());
-        if (optional.isPresent()) {
-            BillEntity entity = optional.get();
-            entity.setStatus(request.getStatus());
-            entity.setUpdateDate(LocalDateTime.now());
+        try {
+            // Find entity
+            Optional<BillEntity> optional = repository.findById(request.getId());
+            if (optional.isPresent()) {
+                BillEntity entity = optional.get();
+                entity.setStatus(request.getStatus());
+                entity.setUpdateDate(LocalDateTime.now());
 
-            // Save entity
-            result = mapper.toDTO(this.repository.save(entity));
+                // Save entity
+                result = mapper.toDTO(this.repository.save(entity));
+            }
+
+            return result;
+        } catch (Exception excepcion) {
+            throw new ModelException(excepcion.getMessage());
         }
-
-        return result;
     }
 
     private void setAuditValues(BillEntity entity) {

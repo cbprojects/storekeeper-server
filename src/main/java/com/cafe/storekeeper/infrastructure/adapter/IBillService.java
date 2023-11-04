@@ -17,4 +17,6 @@ public interface IBillService {
 
     BillDTO updateStatus(StatusBillRequest request) throws ModelException;
 
+    boolean delete(String id) throws ModelException;
+
 }

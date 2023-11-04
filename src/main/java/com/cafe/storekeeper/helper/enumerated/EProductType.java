@@ -1,8 +1,8 @@
 package com.cafe.storekeeper.helper.enumerated;
 
 public enum EProductType {
-	ARTICLE("E"),
-	SERVICE("TD");
+	ARTICLE("AR"),
+	SERVICE("SE");
 
 	private final String nombre;
 
