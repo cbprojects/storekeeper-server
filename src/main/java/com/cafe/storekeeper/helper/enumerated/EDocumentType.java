@@ -2,9 +2,9 @@ package com.cafe.storekeeper.helper.enumerated;
 
 public enum EDocumentType {
 	CEDULA("CC"),
-	PASAPORTE("PA"),
 	CEDULA_EXTRANJERIA("CE"),
-	NIT("NI");
+	NIT("NI"),
+	PASAPORTE("PA");
 
 	private final String nombre;
 

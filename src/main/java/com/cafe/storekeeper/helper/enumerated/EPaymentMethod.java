@@ -1,9 +1,9 @@
 package com.cafe.storekeeper.helper.enumerated;
 
 public enum EPaymentMethod {
-	CASH("E"),
-	CREDIT_CARD("TD"),
-	DEBIT_CARD("TC");
+	EFECTIVO("EF"),
+	TARJETA_DEBITO("TD"),
+	TARJETA_CREDITO("TC");
 
 	private final String nombre;
 

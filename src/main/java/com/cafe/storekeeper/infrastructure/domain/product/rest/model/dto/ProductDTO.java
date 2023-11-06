@@ -3,7 +3,9 @@ package com.cafe.storekeeper.infrastructure.domain.product.rest.model.dto;
 import java.math.BigDecimal;
 
 import com.cafe.storekeeper.helper.enumerated.EProductType;
+import com.cafe.storekeeper.helper.enumerated.EUnit;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
+import com.cafe.storekeeper.infrastructure.domain.product_category.rest.model.dto.ProductCategoryDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,11 +32,20 @@ public class ProductDTO extends AbstractDTO {
     @JsonProperty("description")
     private String description;
 
+    @JsonProperty("category")
+    private ProductCategoryDTO category;
+
+    @JsonProperty("stock")
+    private long stock;
+
     @JsonProperty("stock_min")
     private long stockMin;
 
     @JsonProperty("stock_max")
     private long stockMax;
+
+    @JsonProperty("unit")
+    private EUnit unit;
 
     @JsonProperty("type")
     private EProductType type;

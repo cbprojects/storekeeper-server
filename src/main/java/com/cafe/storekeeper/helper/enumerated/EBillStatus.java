@@ -1,12 +1,12 @@
 package com.cafe.storekeeper.helper.enumerated;
 
 public enum EBillStatus {
-    PENDING("PE"),
-    PAID("PA"),
-    CANCELED("CA"),
-    ANULLED("AN"),
+    ANULADA("AN"),
+    CANCELADA("CA"),
     ERROR("ER"),
-    EXPIRED("EX");
+    PAGADA("PA"),
+    PENDIENTE("PE"),
+    VENCIDA("VE");
 
     private final String nombre;
 
