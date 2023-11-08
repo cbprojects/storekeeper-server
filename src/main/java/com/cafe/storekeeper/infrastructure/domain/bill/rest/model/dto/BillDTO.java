@@ -11,6 +11,7 @@ import com.cafe.storekeeper.helper.enums.EBillStatus;
 import com.cafe.storekeeper.helper.enums.EBillType;
 import com.cafe.storekeeper.helper.enums.EPaymentMethod;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -73,6 +74,7 @@ public class BillDTO extends AbstractDTO {
     @JsonProperty("client")
     private PersonDTO client;
 
+    @JsonIgnore
     public BigDecimal getTotalTaxes() {
         BigDecimal totalTaxes = BigDecimal.valueOf(0);
 

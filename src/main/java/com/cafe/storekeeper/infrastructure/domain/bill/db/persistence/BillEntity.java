@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -79,6 +80,7 @@ public class BillEntity extends AbstractEntity {
     @Field("client")
     private PersonPojo client;
 
+    @Transient
     public BigDecimal getTotalTaxes() {
         BigDecimal totalTaxes = BigDecimal.valueOf(0);
 
