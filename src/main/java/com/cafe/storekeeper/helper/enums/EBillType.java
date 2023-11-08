@@ -1,13 +1,14 @@
-package com.cafe.storekeeper.helper.enumerated;
+package com.cafe.storekeeper.helper.enums;
 
 public enum EBillType {
-    SALE_ORDER("SO"),
-    PURCHASE_ORDER("PO"),
-    INCOME("IN"),
-    COST("CO"),
-    EXPENSE("EX"),
-    ANNULMENT("AN"),
-    FIX("FI");
+    AJUSTE("AJ"),
+    ANULACION("AN"),
+    COMPRA("CO"),
+    COSTO("CS"),
+    COTIZACION("CT"),
+    GASTO("GA"),
+    INGRESO("IN"),
+    VENTA("VE");
 
     private final String nombre;
 

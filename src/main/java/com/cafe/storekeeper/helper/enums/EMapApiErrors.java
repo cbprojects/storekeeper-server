@@ -1,4 +1,4 @@
-package com.cafe.storekeeper.helper.enumerated;
+package com.cafe.storekeeper.helper.enums;
 
 import java.util.HashMap;
 import java.util.Map;

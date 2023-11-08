@@ -3,7 +3,7 @@ package com.cafe.storekeeper.infrastructure.domain.assignment.service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.cafe.storekeeper.infrastructure.adapter.IAssignmentService;
@@ -15,20 +15,21 @@ import com.cafe.storekeeper.infrastructure.domain.assignment.rest.model.dto.Assi
 import com.cafe.storekeeper.infrastructure.domain.assignment.validator.AssignmentValidator;
 import com.cafe.storekeeper.infrastructure.exception.ModelException;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class AssignmentService implements IAssignmentService {
 
-    @Autowired
     private AssignmentMapper mapper;
 
-    @Autowired
     private AssignmentRepository repository;
 
     @Override
     public AssignmentDTO findByEmployeeId(String employeeId) throws ModelException {
         try {
             AssignmentDTO result = null;
-            Optional<AssignmentEntity> optional = repository.findByEmployeeId(employeeId);
+            Optional<AssignmentEntity> optional = repository.findByEmployeeId(new ObjectId(employeeId));
             if (optional.isPresent()) {
                 result = mapper.toDTO(optional.get());
             }

@@ -25,7 +25,7 @@ public class AssignmentRestController {
 
     private final IAssignmentService service;
 
-    @GetMapping(value = "/{employeeId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/employees/{employeeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AssignmentDTO> findByEmployeeId(@PathVariable String employeeId) throws ModelException {
         log.info("|==========> (START FIND BY ID)");
         return new ResponseEntity<>(this.service.findByEmployeeId(employeeId), HttpStatus.OK);

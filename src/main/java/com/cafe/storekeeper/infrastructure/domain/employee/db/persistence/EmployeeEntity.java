@@ -1,11 +1,14 @@
 package com.cafe.storekeeper.infrastructure.domain.employee.db.persistence;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
-import com.cafe.storekeeper.helper.enumerated.EDocumentType;
+import com.cafe.storekeeper.helper.enums.EDocumentType;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
 
 import lombok.AllArgsConstructor;
@@ -34,5 +37,9 @@ public class EmployeeEntity extends AbstractEntity {
 
     @Field("image")
     private String image;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @Field("hire_date")
+    private LocalDateTime hireDate;
 
 }

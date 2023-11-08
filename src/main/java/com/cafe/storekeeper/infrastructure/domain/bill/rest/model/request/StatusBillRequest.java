@@ -1,6 +1,6 @@
 package com.cafe.storekeeper.infrastructure.domain.bill.rest.model.request;
 
-import com.cafe.storekeeper.helper.enumerated.EBillStatus;
+import com.cafe.storekeeper.helper.enums.EBillStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

@@ -3,7 +3,7 @@ package com.cafe.storekeeper.infrastructure.domain.bill.rest.model.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import com.cafe.storekeeper.helper.enumerated.EProductType;
+import com.cafe.storekeeper.helper.enums.EProductType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

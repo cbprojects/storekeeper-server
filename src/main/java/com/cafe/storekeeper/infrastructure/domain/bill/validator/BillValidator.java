@@ -1,6 +1,6 @@
 package com.cafe.storekeeper.infrastructure.domain.bill.validator;
 
-import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
+import com.cafe.storekeeper.helper.enums.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 import com.cafe.storekeeper.infrastructure.domain.bill.rest.model.dto.BillDTO;
 import com.cafe.storekeeper.infrastructure.domain.bill.rest.model.request.StatusBillRequest;

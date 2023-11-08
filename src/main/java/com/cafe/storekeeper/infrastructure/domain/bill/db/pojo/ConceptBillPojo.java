@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.cafe.storekeeper.helper.enumerated.EProductType;
+import com.cafe.storekeeper.helper.enums.EProductType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

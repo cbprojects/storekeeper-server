@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 
 import com.cafe.storekeeper.helper.constant.ConstantsMessage;
-import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
+import com.cafe.storekeeper.helper.enums.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.model.PaginationResponse;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardPaginationRestResponse;

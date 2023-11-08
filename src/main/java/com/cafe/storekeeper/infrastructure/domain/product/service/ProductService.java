@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
+import com.cafe.storekeeper.helper.enums.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.IProductService;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 import com.cafe.storekeeper.infrastructure.domain.product.db.persistence.ProductEntity;
@@ -19,13 +18,14 @@ import com.cafe.storekeeper.infrastructure.domain.product.rest.model.dto.Product
 import com.cafe.storekeeper.infrastructure.domain.product.validator.ProductValidator;
 import com.cafe.storekeeper.infrastructure.exception.ModelException;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class ProductService implements IProductService {
 
-    @Autowired
     private ProductMapper mapper;
 
-    @Autowired
     private ProductRepository repository;
 
     @Override

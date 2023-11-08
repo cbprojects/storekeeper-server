@@ -1,6 +1,6 @@
 package com.cafe.storekeeper.infrastructure.domain.provider.rest.model.dto;
 
-import com.cafe.storekeeper.helper.enumerated.EDocumentType;
+import com.cafe.storekeeper.helper.enums.EDocumentType;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

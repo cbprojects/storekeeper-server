@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
-import com.cafe.storekeeper.helper.enumerated.EDocumentType;
+import com.cafe.storekeeper.helper.enums.EDocumentType;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
 import com.cafe.storekeeper.infrastructure.domain.provider.db.pojo.ContactProviderPersonPojo;
 

@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
-import com.cafe.storekeeper.helper.enumerated.EProductType;
-import com.cafe.storekeeper.helper.enumerated.EUnit;
+import com.cafe.storekeeper.helper.enums.EProductType;
+import com.cafe.storekeeper.helper.enums.EUnit;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
 import com.cafe.storekeeper.infrastructure.domain.product_category.db.persistence.ProductCategoryEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;

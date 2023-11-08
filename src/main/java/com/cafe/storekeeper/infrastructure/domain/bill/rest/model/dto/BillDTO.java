@@ -7,9 +7,9 @@ import java.util.Objects;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.cafe.storekeeper.helper.enumerated.EBillStatus;
-import com.cafe.storekeeper.helper.enumerated.EBillType;
-import com.cafe.storekeeper.helper.enumerated.EPaymentMethod;
+import com.cafe.storekeeper.helper.enums.EBillStatus;
+import com.cafe.storekeeper.helper.enums.EBillType;
+import com.cafe.storekeeper.helper.enums.EPaymentMethod;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

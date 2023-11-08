@@ -1,4 +1,4 @@
-package com.cafe.storekeeper.helper.enumerated;
+package com.cafe.storekeeper.helper.enums;
 
 public enum EPaymentMethod {
 	EFECTIVO("EF"),

@@ -2,7 +2,7 @@ package com.cafe.storekeeper.infrastructure.adapter.model;
 
 import java.io.Serializable;
 
-import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
+import com.cafe.storekeeper.helper.enums.EMapApiErrors;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

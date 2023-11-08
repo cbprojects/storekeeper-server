@@ -1,6 +1,6 @@
 package com.cafe.storekeeper.infrastructure.domain.product.validator;
 
-import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
+import com.cafe.storekeeper.helper.enums.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 import com.cafe.storekeeper.infrastructure.domain.product.rest.model.dto.ProductDTO;
 

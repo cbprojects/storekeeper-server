@@ -2,8 +2,8 @@ package com.cafe.storekeeper.infrastructure.domain.product.rest.model.dto;
 
 import java.math.BigDecimal;
 
-import com.cafe.storekeeper.helper.enumerated.EProductType;
-import com.cafe.storekeeper.helper.enumerated.EUnit;
+import com.cafe.storekeeper.helper.enums.EProductType;
+import com.cafe.storekeeper.helper.enums.EUnit;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
 import com.cafe.storekeeper.infrastructure.domain.product_category.rest.model.dto.ProductCategoryDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;

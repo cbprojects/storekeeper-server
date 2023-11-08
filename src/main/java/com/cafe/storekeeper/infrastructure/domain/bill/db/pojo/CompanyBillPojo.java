@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.cafe.storekeeper.helper.enumerated.EDocumentType;
+import com.cafe.storekeeper.helper.enums.EDocumentType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

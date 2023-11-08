@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
+import com.cafe.storekeeper.helper.enums.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.IEmployeeService;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 import com.cafe.storekeeper.infrastructure.domain.employee.db.persistence.EmployeeEntity;
@@ -19,13 +18,14 @@ import com.cafe.storekeeper.infrastructure.domain.employee.rest.model.dto.Employ
 import com.cafe.storekeeper.infrastructure.domain.employee.validator.EmployeeValidator;
 import com.cafe.storekeeper.infrastructure.exception.ModelException;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class EmployeeService implements IEmployeeService {
 
-    @Autowired
     private EmployeeMapper mapper;
 
-    @Autowired
     private EmployeeRepository repository;
 
     @Override

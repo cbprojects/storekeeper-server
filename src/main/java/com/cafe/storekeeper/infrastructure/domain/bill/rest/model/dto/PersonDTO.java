@@ -2,7 +2,7 @@ package com.cafe.storekeeper.infrastructure.domain.bill.rest.model.dto;
 
 import java.io.Serializable;
 
-import com.cafe.storekeeper.helper.enumerated.EDocumentType;
+import com.cafe.storekeeper.helper.enums.EDocumentType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

@@ -11,9 +11,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
-import com.cafe.storekeeper.helper.enumerated.EBillStatus;
-import com.cafe.storekeeper.helper.enumerated.EBillType;
-import com.cafe.storekeeper.helper.enumerated.EPaymentMethod;
+import com.cafe.storekeeper.helper.enums.EBillStatus;
+import com.cafe.storekeeper.helper.enums.EBillType;
+import com.cafe.storekeeper.helper.enums.EPaymentMethod;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.CompanyBillPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.ConceptBillPojo;

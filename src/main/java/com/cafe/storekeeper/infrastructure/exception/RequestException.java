@@ -1,6 +1,6 @@
 package com.cafe.storekeeper.infrastructure.exception;
 
-import com.cafe.storekeeper.helper.enumerated.EMapApiErrors;
+import com.cafe.storekeeper.helper.enums.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 
 public class RequestException extends Exception {
