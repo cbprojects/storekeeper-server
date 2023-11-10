@@ -36,6 +36,9 @@ public class ConceptBillPojo implements Serializable {
     @Field("product_type")
     private EProductType productType;
 
+    @Field("provider")
+    private PersonBillPojo provider;
+
     @Field("quantity")
     private long quantity;
 

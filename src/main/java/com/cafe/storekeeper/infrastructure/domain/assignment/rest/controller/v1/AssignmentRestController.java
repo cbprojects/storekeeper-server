@@ -1,5 +1,7 @@
 package com.cafe.storekeeper.infrastructure.domain.assignment.rest.controller.v1;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,7 @@ public class AssignmentRestController {
     }
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AssignmentDTO> save(@RequestBody AssignmentDTO request) throws ModelException {
+    public ResponseEntity<AssignmentDTO> save(@Valid @RequestBody AssignmentDTO request) throws ModelException {
         log.info("|==========> (SAVE/UPDATE)");
         return new ResponseEntity<>(this.service.save(request), HttpStatus.OK);
     }

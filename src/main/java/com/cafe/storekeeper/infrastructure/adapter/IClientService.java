@@ -12,6 +12,8 @@ public interface IClientService {
 
     ClientDTO findById(String id) throws ModelException;
 
+    ClientDTO findByDocumentNumber(String documentNumber) throws ModelException;
+
     ClientDTO save(ClientDTO dto) throws ModelException;
 
     boolean delete(String id) throws ModelException;

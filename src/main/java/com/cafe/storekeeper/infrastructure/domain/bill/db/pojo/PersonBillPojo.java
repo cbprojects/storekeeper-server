@@ -17,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class PersonPojo implements Serializable {
+public class PersonBillPojo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Field("name")

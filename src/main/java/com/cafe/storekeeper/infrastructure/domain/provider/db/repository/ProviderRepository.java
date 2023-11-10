@@ -10,4 +10,6 @@ public interface ProviderRepository extends MongoRepository<ProviderEntity, Stri
 
     Optional<ProviderEntity> findById(String id);
 
+    Optional<ProviderEntity> findByDocumentNumber(String documentNumber);
+
 }

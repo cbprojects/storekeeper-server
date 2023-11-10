@@ -44,6 +44,21 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    public ClientDTO findByDocumentNumber(String documentNumber) throws ModelException {
+        try {
+            ClientDTO result = null;
+            Optional<ClientEntity> optional = repository.findByDocumentNumber(documentNumber);
+            if (optional.isPresent()) {
+                result = mapper.toDTO(optional.get());
+            }
+
+            return result;
+        } catch (Exception excepcion) {
+            throw new ModelException(excepcion.getMessage());
+        }
+    }
+
+    @Override
     public List<ClientDTO> find(Map<String, String> filters) throws ModelException {
         try {
             List<ClientDTO> result = new ArrayList<>();

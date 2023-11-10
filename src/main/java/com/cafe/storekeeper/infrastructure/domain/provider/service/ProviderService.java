@@ -44,6 +44,21 @@ public class ProviderService implements IProviderService {
     }
 
     @Override
+    public ProviderDTO findByDocumentNumber(String documentNumber) throws ModelException {
+        try {
+            ProviderDTO result = null;
+            Optional<ProviderEntity> optional = repository.findByDocumentNumber(documentNumber);
+            if (optional.isPresent()) {
+                result = mapper.toDTO(optional.get());
+            }
+
+            return result;
+        } catch (Exception excepcion) {
+            throw new ModelException(excepcion.getMessage());
+        }
+    }
+
+    @Override
     public List<ProviderDTO> find(Map<String, String> filters) throws ModelException {
         try {
             List<ProviderDTO> result = new ArrayList<>();

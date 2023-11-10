@@ -12,6 +12,8 @@ public interface IProviderService {
 
     ProviderDTO findById(String id) throws ModelException;
 
+    ProviderDTO findByDocumentNumber(String documentNumber) throws ModelException;
+
     ProviderDTO save(ProviderDTO dto) throws ModelException;
 
     boolean delete(String id) throws ModelException;

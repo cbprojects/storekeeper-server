@@ -2,6 +2,10 @@ package com.cafe.storekeeper.infrastructure.domain.product.rest.model.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.cafe.storekeeper.helper.constant.ConstantsMessage;
 import com.cafe.storekeeper.helper.enums.EProductType;
 import com.cafe.storekeeper.helper.enums.EUnit;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
@@ -34,6 +38,11 @@ public class ProductDTO extends AbstractDTO {
 
     @JsonProperty("category")
     private ProductCategoryDTO category;
+
+    @Valid
+    @NotNull(message = ConstantsMessage.PRODUCT_NO_PROVIDER_MESSAGE)
+    @JsonProperty("provider")
+    private PersonProductDTO provider;
 
     @JsonProperty("stock")
     private long stock;

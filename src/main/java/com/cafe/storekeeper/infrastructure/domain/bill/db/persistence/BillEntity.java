@@ -18,7 +18,7 @@ import com.cafe.storekeeper.helper.enums.EPaymentMethod;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.CompanyBillPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.ConceptBillPojo;
-import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.PersonPojo;
+import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.PersonBillPojo;
 import com.cafe.storekeeper.infrastructure.domain.bill.db.pojo.TaxPojo;
 
 import lombok.AllArgsConstructor;
@@ -74,11 +74,8 @@ public class BillEntity extends AbstractEntity {
     @Field("company")
     private CompanyBillPojo company;
 
-    @Field("provider")
-    private PersonPojo provider;
-
     @Field("client")
-    private PersonPojo client;
+    private PersonBillPojo client;
 
     @Transient
     public BigDecimal getTotalTaxes() {

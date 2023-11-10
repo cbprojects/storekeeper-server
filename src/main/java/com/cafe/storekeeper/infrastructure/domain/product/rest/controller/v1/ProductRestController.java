@@ -3,6 +3,7 @@ package com.cafe.storekeeper.infrastructure.domain.product.rest.controller.v1;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -50,7 +51,7 @@ public class ProductRestController {
     }
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO request) throws ModelException {
+    public ResponseEntity<ProductDTO> save(@Valid @RequestBody ProductDTO request) throws ModelException {
         log.info("|==========> (SAVE/UPDATE)");
         return new ResponseEntity<>(this.service.save(request), HttpStatus.OK);
     }

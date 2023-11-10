@@ -16,7 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class PersonDTO implements Serializable {
+public class PersonBillDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("name")

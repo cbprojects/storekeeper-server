@@ -11,6 +11,7 @@ import com.cafe.storekeeper.helper.constant.ConstantsTableNames;
 import com.cafe.storekeeper.helper.enums.EProductType;
 import com.cafe.storekeeper.helper.enums.EUnit;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractEntity;
+import com.cafe.storekeeper.infrastructure.domain.product.db.pojo.PersonProductPojo;
 import com.cafe.storekeeper.infrastructure.domain.product_category.db.persistence.ProductCategoryEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -41,6 +42,9 @@ public class ProductEntity extends AbstractEntity {
     @DBRef(lazy = true)
     @Field("category")
     private ProductCategoryEntity category;
+
+    @Field("provider")
+    private PersonProductPojo provider;
 
     @Field("stock")
     private long stock;

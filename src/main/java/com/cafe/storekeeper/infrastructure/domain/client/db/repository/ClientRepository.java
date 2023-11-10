@@ -10,4 +10,6 @@ public interface ClientRepository extends MongoRepository<ClientEntity, String> 
 
     Optional<ClientEntity> findById(String id);
 
+    Optional<ClientEntity> findByDocumentNumber(String documentNumber);
+
 }

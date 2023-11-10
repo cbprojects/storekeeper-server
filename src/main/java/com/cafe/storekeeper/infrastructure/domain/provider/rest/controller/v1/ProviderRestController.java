@@ -3,6 +3,7 @@ package com.cafe.storekeeper.infrastructure.domain.provider.rest.controller.v1;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -49,8 +50,14 @@ public class ProviderRestController {
         return new ResponseEntity<>(this.service.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/documents/{documentNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ProviderDTO> findByDocumentNumber(@PathVariable String documentNumber) throws ModelException {
+        log.info("|==========> (START FIND BY DOCUMENT NUMBER)");
+        return new ResponseEntity<>(this.service.findByDocumentNumber(documentNumber), HttpStatus.OK);
+    }
+
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProviderDTO> save(@RequestBody ProviderDTO request) throws ModelException {
+    public ResponseEntity<ProviderDTO> save(@Valid @RequestBody ProviderDTO request) throws ModelException {
         log.info("|==========> (SAVE/UPDATE)");
         return new ResponseEntity<>(this.service.save(request), HttpStatus.OK);
     }
