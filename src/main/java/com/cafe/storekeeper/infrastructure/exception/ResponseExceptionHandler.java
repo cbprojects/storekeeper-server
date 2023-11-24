@@ -64,4 +64,5 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         StandardErrorResponse apiError = UtilResponse.buildApiError(exception, ConstantsValidators.BAD_REQUEST);
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
+
 }

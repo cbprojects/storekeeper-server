@@ -3,6 +3,7 @@ spring:
     mongodb:
       auto-index-creation: true
       uri: ${STOREKEEPER_MONGO_URL}
+      # uri: mongodb://storekeeper:3F46547XDDPNVjBr@ac-4pi4xp6-shard-00-00.ygkvf6k.mongodb.net:27017,ac-4pi4xp6-shard-00-01.ygkvf6k.mongodb.net:27017,ac-4pi4xp6-shard-00-02.ygkvf6k.mongodb.net:27017/storekeeper-qa?ssl=true&replicaSet=atlas-gne1uu-shard-0&authSource=admin&retryWrites=true&w=majority
       # host: ${MONGO_HOST}
       # port: ${MONGO_PORT}
       # username: ${USERNAME_MONGO}
@@ -28,3 +29,7 @@ config:
       name: CBProjects
       url: https://cbprojects.com
       email: contact@cbprojects.com
+
+server:
+  servlet:
+    context-path: /storekeeper-server

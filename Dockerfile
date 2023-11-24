@@ -3,9 +3,7 @@ ENV HOME=/usr/app
 RUN mkdir -p $HOME
 WORKDIR $HOME
 
-ARG JAR_FILE=Storekeeper.jar
-ADD Storekeeper.jar /usr/app/Storekeeper.jar
+ARG JAR_FILE=storekeeper-server.jar
+ADD storekeeper-server.jar /usr/app/storekeeper-server.jar
 
-ENV CONTEXT_PATH=/
-
-ENTRYPOINT ["java", "-jar", "/usr/app/Storekeeper.jar", "--server.servlet.context-path=${CONTEXT_PATH}"]
+ENTRYPOINT ["java", "-jar", "/usr/app/storekeeper-server.jar"]

@@ -3,7 +3,6 @@ package com.cafe.storekeeper.infrastructure.adapter;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,17 +11,14 @@ import org.springframework.web.client.RestTemplate;
 
 import com.cafe.storekeeper.helper.constant.ConstantsRest;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequiredArgsConstructor
 public class AbstractRestApiClient {
 
-    @Autowired
-    private RestTemplate restTemplate;
-
-    public AbstractRestApiClient() {
-        super();
-    }
+    private final RestTemplate restTemplate;
 
     public ResponseEntity<?> getJSON(String url, String token, Class<?> clase) {
         log.info("---| GET EXECUTION |---");
