@@ -31,5 +31,10 @@ config:
       email: contact@cbprojects.com
 
 server:
+  port: 8443
   servlet:
     context-path: /storekeeper-server
+  ssl: 
+    key-store: classpath:cbaeneprojects.jks
+    key-store-password: ${SSL_PASSWORD}
+    keyStoreType: JKS
