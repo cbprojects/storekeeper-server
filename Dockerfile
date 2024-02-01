@@ -4,7 +4,8 @@ RUN mkdir -p $HOME
 WORKDIR $HOME
 
 ARG JAR_FILE=storekeeper-server.jar
-ADD storekeeper/storekeeper-server.jar /usr/app/storekeeper-server.jar
+ADD storekeeper-server.jar /usr/app/storekeeper-server.jar
+COPY generated-sources/ /usr/app/generated-sources/
 
 EXPOSE 8443
 ENTRYPOINT ["java", "-jar", "/usr/app/storekeeper-server.jar"]

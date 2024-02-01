@@ -9,7 +9,7 @@ services:
       dockerfile: ./Dockerfile
     image: storekeeper-server:latest
     ports:
-      - 8085:8085
+      - 8402:8443
     networks:
       network:
         ipv4_address: 10.5.0.2

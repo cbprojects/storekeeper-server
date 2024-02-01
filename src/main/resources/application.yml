@@ -35,6 +35,6 @@ server:
   servlet:
     context-path: /storekeeper-server
   ssl: 
-    key-store: classpath:cbaeneprojects.jks
+    key-store: classpath:cbaeneprojects.pfx
     key-store-password: ${SSL_PASSWORD}
-    keyStoreType: JKS
+    keyStoreType: PKCS12
