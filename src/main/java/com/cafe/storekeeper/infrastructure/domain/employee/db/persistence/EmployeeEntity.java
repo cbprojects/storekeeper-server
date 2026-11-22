@@ -24,6 +24,8 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.EMPLOYEES)
 public class EmployeeEntity extends AbstractEntity {
+    private static final long serialVersionUID = 1L;
+
 
     @Field("name")
     private String name;

@@ -3,8 +3,8 @@ package com.cafe.storekeeper.infrastructure.domain.bill.rest.model.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import com.cafe.storekeeper.helper.constant.ConstantsMessage;
 import com.cafe.storekeeper.helper.enums.EProductType;

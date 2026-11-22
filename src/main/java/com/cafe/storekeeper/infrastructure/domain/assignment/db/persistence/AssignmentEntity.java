@@ -24,6 +24,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.ASSIGNMENTS)
 public class AssignmentEntity extends AbstractEntity {
+    private static final long serialVersionUID = 1L;
 
     @DBRef(lazy = true)
     @Field("employee")
@@ -31,6 +32,8 @@ public class AssignmentEntity extends AbstractEntity {
 
     @DBRef(lazy = true)
     @Field("clients")
+    // DTO/entity elements are serializable; serialization uses the concrete list implementation.
+    @SuppressWarnings("serial")
     private List<ClientEntity> clients;
 
 }

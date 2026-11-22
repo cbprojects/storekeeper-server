@@ -24,3 +24,13 @@ hs_err_pid*
 
 # Java builds
 target
+.env
+.env.*
+!.env.example
+
+# Local certificates and private keys
+*.jks
+*.pfx
+*.p12
+*.key
+*.pem

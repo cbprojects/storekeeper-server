@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -60,9 +60,13 @@ public class BillDTO extends AbstractDTO {
     @Valid
     @NotEmpty(message = ConstantsMessage.BILL_EMPTY_CONCEPTS_MESSAGE)
     @JsonProperty("concepts")
+    // DTO/entity elements are serializable; serialization uses the concrete list implementation.
+    @SuppressWarnings("serial")
     private List<ConceptBillDTO> concepts;
 
     @JsonProperty("taxes")
+    // DTO/entity elements are serializable; serialization uses the concrete list implementation.
+    @SuppressWarnings("serial")
     private List<TaxDTO> taxes;
 
     @Valid

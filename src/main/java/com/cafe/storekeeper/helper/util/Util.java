@@ -112,8 +112,8 @@ public final class Util {
 
     public static boolean isDate(String dateString, DateTimeFormatter formatter) {
         try {
-            LocalDate paymentDate = LocalDate.parse(dateString, formatter);
-            return paymentDate != null;
+            LocalDate.parse(dateString, formatter);
+            return true;
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -121,8 +121,8 @@ public final class Util {
 
     public static boolean isDateTime(String dateString, DateTimeFormatter formatter) {
         try {
-            LocalDateTime paymentDate = LocalDateTime.parse(dateString, formatter);
-            return paymentDate != null;
+            LocalDateTime.parse(dateString, formatter);
+            return true;
         } catch (DateTimeParseException e) {
             return false;
         }

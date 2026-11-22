@@ -22,6 +22,8 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.COMPANIES)
 public class CompanyEntity extends AbstractEntity {
+    private static final long serialVersionUID = 1L;
+
 
     @Field("business_name")
     private String businessName;

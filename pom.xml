@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
+		<version>4.1.2</version>
 		<relativePath/>
 	</parent>
 
@@ -20,51 +20,38 @@
 	<version>1.2.0</version>
 
 	<properties>
-		<java.version>11</java.version>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
-		<spring-doc.version>1.6.8</spring-doc.version>
-		<actuator.version>2.7.18</actuator.version>
-		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-		<commons.io.version>2.11.0</commons.io.version>
-		<org.json.version>20231013</org.json.version>
-		<jasper.version>6.5.1</jasper.version>
-		<jacoco.version>0.8.7</jacoco.version>
+		<java.version>25</java.version>
+		<spring-doc.version>3.2.0</spring-doc.version>
+		<org.mapstruct.version>1.6.3</org.mapstruct.version>
+		<jacoco.version>0.8.14</jacoco.version>
 		<sonar.organization>cbprojects</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.exclusions>
-            **/main/**/configuration/**/*,
-            **/main/**/helper/constant/**,
-            **/main/**/infrastructure/exception/**/*,
-            **/Application.java
-		</sonar.exclusions>
+
 	</properties>
 
-	<repositories>
-		<repository>
-			<id> jaspersoft-repo</id>
-			<url>https://jaspersoft.jfrog.io/jaspersoft/jaspersoft-repo</url>
-		</repository>
-		<repository>
-			<id>jasperreports</id>
-			<url>http://jasperreports.sourceforge.net/maven2</url>
-		</repository>
-		<repository>
-			<id>jaspersoft-third-party</id>
-			<url>http://jaspersoft.artifactoryonline.com/jaspersoft/t‌​hird-party-ce-artifa‌​cts/</url>
-		</repository>
-	</repositories>
-
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security-oauth2-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<!-- SPRINGBOOT -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-			<version>${actuator.version}</version>
+
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -74,13 +61,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<!--<scope>provided</scope>-->
-		</dependency>
 
 		<!-- BD -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-restclient</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -96,7 +82,7 @@
 		<!-- DOC API -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${spring-doc.version}</version>
 		</dependency>
 		<dependency>
@@ -109,33 +95,9 @@
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct-processor</artifactId>
-			<version>${org.mapstruct.version}</version>
-			<scope>provided</scope>
-		</dependency>
 
-		<!-- OTROS -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>${org.json.version}</version>
-		</dependency>
-
-		<!-- REPORTES -->
-		<dependency>
-			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>${jasper.version}</version>
-		</dependency>
 
 		<!-- COMMONS -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>${commons.io.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -147,9 +109,17 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
+					<argLine>@{argLine} -javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar -Xshare:off</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+
+				<configuration>
+					<compilerArgs><arg>-Xlint:all,-processing</arg></compilerArgs>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.mapstruct</groupId>
@@ -161,16 +131,13 @@
 							<artifactId>lombok</artifactId>
 							<version>${lombok.version}</version>
 						</path>
-						<dependency>
+						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok-mapstruct-binding</artifactId>
 							<version>0.2.0</version>
-						</dependency>
+						</path>
 					</annotationProcessorPaths>
-					<compilerArgs>
-						<compilerArg> -Amapstruct.defaultComponentModel=spring
-						</compilerArg>
-					</compilerArgs>
+
 				</configuration>
 			</plugin>
 			<plugin>
@@ -191,13 +158,8 @@
 				<version>${jacoco.version}</version>
 				<configuration>
 					<output>file</output>
-					<append>true</append>
-					<excludes>
-						<exclude>com/cafe/storekeeper/**/configuration/**/*.class</exclude>
-						<exclude>com/cafe/storekeeper/**/helper/constant/**/*.class</exclude>
-						<exclude>com/cafe/storekeeper/**/infrastructure/exception/**/*.class</exclude>
-						<exclude>com/cafe/storekeeper/Application.class</exclude>
-					</excludes>
+					<append>false</append>
+
 				</configuration>
 				<executions>
 					<execution>
@@ -221,12 +183,12 @@
 						<configuration>
 							<rules>
 								<rule>
-									<element>PACKAGE</element>
+									<element>BUNDLE</element>
 									<limits>
 										<limit>
 											<counter>LINE</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.8</minimum>
+											<minimum>1.0</minimum>
 										</limit>
 									</limits>
 								</rule>

@@ -1,0 +1,67 @@
+name: VPS release — backend
+on:
+  workflow_dispatch:
+    inputs:
+      architecture:
+        description: VPS CPU architecture (uname -m)
+        type: choice
+        options: [amd64, arm64]
+        default: amd64
+      deploy:
+        description: Deploy over SSH after building (requires initial VPS setup and secrets)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: vps-backend
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ${{ inputs.architecture == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    environment: production
+    defaults:
+      run:
+        shell: bash -euo pipefail {0}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Compile backend and run Maven verify
+        run: |
+          docker build -t "storekeeper-server:gh-${GITHUB_SHA}" .
+          docker save "storekeeper-server:gh-${GITHUB_SHA}" | gzip -1 > "backend-${GITHUB_SHA}.tar.gz"
+          printf 'SERVER_IMAGE=storekeeper-server:gh-%s\n' "$GITHUB_SHA" > release.env
+          sha256sum "backend-${GITHUB_SHA}.tar.gz" release.env > SHA256SUMS
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: storekeeper-backend-${{ github.sha }}
+          path: |
+            backend-${{ github.sha }}.tar.gz
+            SHA256SUMS
+            release.env
+          compression-level: 0
+          retention-days: 7
+          if-no-files-found: error
+      - name: Deploy to the configured VPS
+        if: ${{ inputs.deploy }}
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ vars.VPS_PORT || '22' }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+          APP_DIR: ${{ vars.VPS_APP_DIR || '/opt/storekeeper' }}
+        run: |
+          [[ "$VPS_HOST" =~ ^[a-zA-Z0-9.-]+$ ]] || { echo 'Set VPS_HOST to an IPv4 address or hostname'; exit 1; }
+          [[ "$VPS_USER" =~ ^[a-zA-Z0-9_-]+$ ]] || exit 1
+          [[ "$VPS_PORT" =~ ^[0-9]+$ ]] || exit 1
+          [[ "$APP_DIR" =~ ^/[a-zA-Z0-9/_-]+$ ]] || exit 1
+          test -n "$VPS_SSH_KEY" && test -n "$VPS_KNOWN_HOSTS"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/vps_key
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/vps_key ~/.ssh/known_hosts
+          trap 'rm -f ~/.ssh/vps_key' EXIT
+          scp -P "$VPS_PORT" -i ~/.ssh/vps_key -o BatchMode=yes -o StrictHostKeyChecking=yes "backend-${GITHUB_SHA}.tar.gz" "$VPS_USER@$VPS_HOST:$APP_DIR/incoming/"
+          ssh -p "$VPS_PORT" -i ~/.ssh/vps_key -o BatchMode=yes -o StrictHostKeyChecking=yes "$VPS_USER@$VPS_HOST" "bash '$APP_DIR/bin/deploy-backend.sh' '$APP_DIR/incoming/backend-${GITHUB_SHA}.tar.gz' 'storekeeper-server:gh-${GITHUB_SHA}'"

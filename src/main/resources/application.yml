@@ -1,17 +1,22 @@
 spring:
+  jackson:
+    # Preserve the existing REST contract while using Jackson 3.
+    use-jackson2-defaults: true
+  mongodb:
+    uri: ${STOREKEEPER_MONGO_URL:mongodb://localhost:27017/storekeeper}
+  mail:
+    properties:
+      mail.smtp.auth: ${STOREKEEPER_SMTP_AUTH:false}
+      mail.smtp.starttls.enable: ${STOREKEEPER_SMTP_STARTTLS:false}
+      mail.smtp.starttls.required: ${STOREKEEPER_SMTP_STARTTLS:false}
+      mail.smtp.ssl.enable: ${STOREKEEPER_SMTP_SSL:false}
+      mail.smtp.ssl.checkserveridentity: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 5000
+      mail.smtp.writetimeout: 5000
   data:
     mongodb:
       auto-index-creation: true
-      uri: ${STOREKEEPER_MONGO_URL}
-      # uri: mongodb://storekeeper:3F46547XDDPNVjBr@ac-4pi4xp6-shard-00-00.ygkvf6k.mongodb.net:27017,ac-4pi4xp6-shard-00-01.ygkvf6k.mongodb.net:27017,ac-4pi4xp6-shard-00-02.ygkvf6k.mongodb.net:27017/storekeeper-qa?ssl=true&replicaSet=atlas-gne1uu-shard-0&authSource=admin&retryWrites=true&w=majority
-      # host: ${MONGO_HOST}
-      # port: ${MONGO_PORT}
-      # username: ${USERNAME_MONGO}
-      # password: ${PASSWORD_MONGO}
-      # database: ${MONGO_DATABASE}
-  mvc:
-    pathmatch:
-      matching-strategy: ANT_PATH_MATCHER
 springdoc:
   api-docs:
     path: /api-docs
@@ -31,10 +36,30 @@ config:
       email: contact@cbprojects.com
 
 server:
-  port: 8443
+  port: ${SERVER_PORT:8080}
   servlet:
     context-path: /storekeeper-server
-  ssl: 
-    key-store: classpath:cbaeneprojects.pfx
-    key-store-password: ${SSL_PASSWORD}
-    keyStoreType: PKCS12
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true
+        secure: ${SESSION_COOKIE_SECURE:true}
+        same-site: lax
+  ssl:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+storekeeper:
+  public-url: ${STOREKEEPER_PUBLIC_URL:http://localhost:4200}
+  allowed-origins: ${STOREKEEPER_ALLOWED_ORIGINS:http://localhost:4200}
+  mail:
+    from: ${STOREKEEPER_MAIL_FROM:noreply@localhost}

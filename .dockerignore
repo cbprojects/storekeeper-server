@@ -1,0 +1,6 @@
+.git
+.env*
+target
+*.jar
+src/main/resources/*.pfx
+src/main/resources/*.jks

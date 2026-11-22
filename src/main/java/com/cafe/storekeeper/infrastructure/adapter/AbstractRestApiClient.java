@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.cafe.storekeeper.helper.constant.ConstantsRest;
 
@@ -30,15 +31,13 @@ public class AbstractRestApiClient {
     public ResponseEntity<?> getJSON(String url, String token, Map<String, String> params, Class<?> clase) {
         log.info("---| GET EXECUTION WITH PARAMS |---");
         HttpEntity<String> entity = new HttpEntity<>(this.buildHttpHeaders(token));
-        StringBuilder builderURL = new StringBuilder();
-        builderURL.append(url);
+        UriComponentsBuilder builderURL = UriComponentsBuilder.fromUriString(url);
         if (params != null) {
-            builderURL.append("?");
             for (Map.Entry<String, String> entry : params.entrySet()) {
-                builderURL.append(url).append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+                builderURL.queryParam(entry.getKey(), entry.getValue());
             }
         }
-        return restTemplate.exchange(builderURL.toString(), HttpMethod.GET, entity, clase);
+        return restTemplate.exchange(builderURL.build().encode().toUri(), HttpMethod.GET, entity, clase);
     }
 
     public ResponseEntity<?> postJSON(String url, Object request, String token, Class<?> clase) {

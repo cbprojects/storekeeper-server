@@ -18,6 +18,8 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CompanyDTO extends AbstractDTO {
+    private static final long serialVersionUID = 1L;
+
 
     @JsonProperty("business_name")
     private String businessName;

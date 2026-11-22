@@ -1,6 +1,6 @@
 package com.cafe.storekeeper.infrastructure.exception;
 
-import javax.validation.UnexpectedTypeException;
+import jakarta.validation.UnexpectedTypeException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.cafe.storekeeper.infrastructure.domain.assignment.rest.controller.v1;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

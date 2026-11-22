@@ -1,11 +1,13 @@
-FROM adoptopenjdk/openjdk11
-ENV HOME=/usr/app
-RUN mkdir -p $HOME
-WORKDIR $HOME
+FROM maven:3.9-eclipse-temurin-25 AS build
+WORKDIR /build
+COPY pom.xml .
+COPY src ./src
+RUN --mount=type=cache,target=/root/.m2 mvn -B verify
 
-ARG JAR_FILE=storekeeper-server.jar
-ADD storekeeper-server.jar /usr/app/storekeeper-server.jar
-COPY generated-sources/ /usr/app/generated-sources/
-
-EXPOSE 8443
-ENTRYPOINT ["java", "-jar", "/usr/app/storekeeper-server.jar"]
+FROM eclipse-temurin:25-jre-alpine
+RUN addgroup -S app && adduser -S app -G app && apk add --no-cache curl
+WORKDIR /app
+COPY --from=build --chown=app:app /build/target/storekeeper-server.jar app.jar
+USER app
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

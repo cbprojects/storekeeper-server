@@ -22,7 +22,7 @@ public class StandardPaginationRestResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("result")
-	private Object result;
+	private transient Object result;
 
 	@JsonProperty("_pagination")
 	private PaginationResponse pagination;

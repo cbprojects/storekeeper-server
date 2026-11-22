@@ -34,6 +34,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.BILLS)
 public class BillEntity extends AbstractEntity {
+    private static final long serialVersionUID = 1L;
 
     @Field("bill_id")
     @Indexed(unique = true)
@@ -52,9 +53,13 @@ public class BillEntity extends AbstractEntity {
     private String address;
 
     @Field("concepts")
+    // DTO/entity elements are serializable; serialization uses the concrete list implementation.
+    @SuppressWarnings("serial")
     private List<ConceptBillPojo> concepts;
 
     @Field("taxes")
+    // DTO/entity elements are serializable; serialization uses the concrete list implementation.
+    @SuppressWarnings("serial")
     private List<TaxPojo> taxes;
 
     @Field("bill_type")

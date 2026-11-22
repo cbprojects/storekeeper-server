@@ -1,12 +1,11 @@
 package com.cafe.storekeeper.helper.util;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -100,13 +99,7 @@ public class UtilResponse {
         Map<String, String> queryCriteria = new HashMap<>();
 
         if (request.getQueryString() != null) {
-            String queryString;
-
-            try {
-                queryString = URLDecoder.decode(request.getQueryString(), StandardCharsets.UTF_8.toString());
-            } catch (UnsupportedEncodingException error) {
-                throw new RequestException(error.getMessage());
-            }
+            String queryString = URLDecoder.decode(request.getQueryString(), StandardCharsets.UTF_8);
 
             if (StringUtils.isNotBlank(queryString)) {
                 for (String pair : queryString.split("&")) {

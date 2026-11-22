@@ -28,6 +28,8 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @Document(collection = ConstantsTableNames.PRODUCTS)
 public class ProductEntity extends AbstractEntity {
+    private static final long serialVersionUID = 1L;
+
 
     @Field("code")
     @Indexed(unique = true)

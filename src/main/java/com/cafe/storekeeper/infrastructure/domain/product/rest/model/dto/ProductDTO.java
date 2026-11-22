@@ -2,8 +2,8 @@ package com.cafe.storekeeper.infrastructure.domain.product.rest.model.dto;
 
 import java.math.BigDecimal;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import com.cafe.storekeeper.helper.constant.ConstantsMessage;
 import com.cafe.storekeeper.helper.enums.EProductType;
@@ -26,6 +26,8 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDTO extends AbstractDTO {
+    private static final long serialVersionUID = 1L;
+
 
     @JsonProperty("code")
     private String code;

@@ -2,9 +2,9 @@ package com.cafe.storekeeper.infrastructure.domain.assignment.rest.model.dto;
 
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import com.cafe.storekeeper.helper.constant.ConstantsMessage;
 import com.cafe.storekeeper.infrastructure.adapter.model.AbstractDTO;
@@ -26,6 +26,8 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AssignmentDTO extends AbstractDTO {
+    private static final long serialVersionUID = 1L;
+
 
     @Valid
     @NotNull(message = ConstantsMessage.ASSIGNMENT_NO_EMPLOYEE_MESSAGE)
@@ -35,6 +37,8 @@ public class AssignmentDTO extends AbstractDTO {
     @Valid
     @NotEmpty(message = ConstantsMessage.ASSIGNMENT_EMPTY_CLIENTS_MESSAGE)
     @JsonProperty("clients")
+    // DTO/entity elements are serializable; serialization uses the concrete list implementation.
+    @SuppressWarnings("serial")
     private List<ClientDTO> clients;
 
 }

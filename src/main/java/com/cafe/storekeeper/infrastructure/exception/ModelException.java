@@ -4,6 +4,8 @@ import com.cafe.storekeeper.helper.enums.EMapApiErrors;
 import com.cafe.storekeeper.infrastructure.adapter.model.StandardErrorResponse;
 
 public class ModelException extends Exception {
+    private static final long serialVersionUID = 1L;
+
 
     private static final String LOG_START = "|~ ModelException ~>| ";
     private static final String LOG_END = " |<~ ModelException ~|";
